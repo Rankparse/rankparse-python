@@ -135,9 +135,12 @@ class TestMethods:
     @respx.mock
     def test_batch_sends_post(self, client):
         route = respx.post(f"{BASE_URL}/batch").mock(
-            return_value=httpx.Response(200, json={"results": []})
+            return_value=httpx.Response(
+                200,
+                json={"data": [], "credits_used": 0, "credits_remaining": 100},
+            )
         )
-        client.batch([{"endpoint": "domain-authority", "domain": "example.com"}])
+        client.batch(["example.com"])
         assert route.calls[0].request.method == "POST"
 
     @respx.mock

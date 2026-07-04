@@ -92,8 +92,8 @@ class AsyncRankParseClient(BaseClient):
     async def page_performance(self, url: str, *, strategy: str = "mobile") -> dict:
         return await self._get("/page-performance", url=url, strategy=strategy)
 
-    async def tech_stack(self, url: str) -> dict:
-        return await self._get("/tech-stack", url=url)
+    async def tech_stack(self, domain: str) -> dict:
+        return await self._get("/tech-stack", domain=domain)
 
     async def site_health(self, domain: str) -> dict:
         return await self._get("/site-health", domain=domain)
@@ -115,8 +115,8 @@ class AsyncRankParseClient(BaseClient):
 
     # -- Batch ------------------------------------------------------------------
 
-    async def batch(self, requests: list) -> dict:
-        return await self._post("/batch", {"requests": requests})
+    async def batch(self, domains: list) -> dict:
+        return await self._post("/batch", {"domains": domains})
 
     # -- Dashboard --------------------------------------------------------------
 

@@ -137,7 +137,7 @@ Fields `domain`, `url`, `total`, `limit`, and `offset` are only present when rel
 |---|---|---|---|
 | `page_seo(url)` | On-page SEO signals | — | 2 |
 | `page_performance(url)` | Google PageSpeed Insights + Core Web Vitals | `strategy` | 3 |
-| `tech_stack(url)` | Technologies detected on the page | — | 2 |
+| `tech_stack(domain)` | Technologies detected on the page | — | 2 |
 | `site_health(domain)` | Crawl errors, redirect chains, status codes | — | 2 |
 | `sitemap(domain)` | Sitemap URLs | — | 2 |
 | `crawl_history(domain)` | Crawl timestamps and HTTP status history | `limit`, `offset` | 2 |
@@ -149,13 +149,10 @@ Fields `domain`, `url`, `total`, `limit`, and `offset` are only present when rel
 
 | Method | Description | Credits |
 |---|---|---|
-| `batch(requests)` | Run multiple endpoint calls in one request | Sum of individual costs |
+| `batch(domains)` | Backlink lookup for up to 50 domains in one request | 2 per domain |
 
 ```python
-result = client.batch([
-    {"endpoint": "domain-authority", "domain": "github.com"},
-    {"endpoint": "backlinks", "domain": "github.com", "limit": 10},
-])
+result = client.batch(["github.com", "stripe.com"])
 ```
 
 ### Dashboard (no credits)

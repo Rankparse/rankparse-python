@@ -92,8 +92,8 @@ class RankParseClient(BaseClient):
     def page_performance(self, url: str, *, strategy: str = "mobile") -> dict:
         return self._get("/page-performance", url=url, strategy=strategy)
 
-    def tech_stack(self, url: str) -> dict:
-        return self._get("/tech-stack", url=url)
+    def tech_stack(self, domain: str) -> dict:
+        return self._get("/tech-stack", domain=domain)
 
     def site_health(self, domain: str) -> dict:
         return self._get("/site-health", domain=domain)
@@ -115,8 +115,8 @@ class RankParseClient(BaseClient):
 
     # -- Batch ------------------------------------------------------------------
 
-    def batch(self, requests: list) -> dict:
-        return self._post("/batch", {"requests": requests})
+    def batch(self, domains: list) -> dict:
+        return self._post("/batch", {"domains": domains})
 
     # -- Dashboard --------------------------------------------------------------
 
