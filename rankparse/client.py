@@ -95,6 +95,10 @@ class RankParseClient(BaseClient):
     def tech_stack(self, domain: str) -> dict:
         return self._get("/tech-stack", domain=domain)
 
+    def site_platform(self, domain: str) -> dict:
+        """What the site runs on (WordPress, Wix, Shopify, ...), from one live fetch. 1 credit."""
+        return self._get("/site-platform", domain=domain)
+
     def site_health(self, domain: str) -> dict:
         return self._get("/site-health", domain=domain)
 

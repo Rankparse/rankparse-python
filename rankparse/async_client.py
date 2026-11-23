@@ -95,6 +95,10 @@ class AsyncRankParseClient(BaseClient):
     async def tech_stack(self, domain: str) -> dict:
         return await self._get("/tech-stack", domain=domain)
 
+    async def site_platform(self, domain: str) -> dict:
+        """What the site runs on (WordPress, Wix, Shopify, ...), from one live fetch. 1 credit."""
+        return await self._get("/site-platform", domain=domain)
+
     async def site_health(self, domain: str) -> dict:
         return await self._get("/site-health", domain=domain)
 
