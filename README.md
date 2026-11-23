@@ -138,6 +138,7 @@ Fields `domain`, `url`, `total`, `limit`, and `offset` are only present when rel
 | `page_seo(url)` | On-page SEO signals | — | 2 |
 | `page_performance(url)` | Google PageSpeed Insights + Core Web Vitals | `strategy` | 3 |
 | `tech_stack(domain)` | Technologies detected on the page | — | 2 |
+| `site_platform(domain)` | The platform the site runs on (WordPress, Wix, Shopify, ...) plus commerce add-ons, from one live fetch | — | 1 |
 | `site_health(domain)` | Crawl errors, redirect chains, status codes | — | 2 |
 | `sitemap(domain)` | Sitemap URLs | — | 2 |
 | `crawl_history(domain)` | Crawl timestamps and HTTP status history | `limit`, `offset` | 2 |

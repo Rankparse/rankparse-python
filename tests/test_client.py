@@ -95,6 +95,19 @@ class TestParamSerialization:
         assert "domain=github.com" in str(request.url)
 
     @respx.mock
+    def test_site_platform_hits_its_own_route(self, client):
+        route = respx.get(f"{BASE_URL}/site-platform").mock(
+            return_value=httpx.Response(
+                200,
+                json={"domain": "example.com", "data": {"domain": "example.com", "platform": {"name": "WordPress", "category": "cms", "confidence": "definite", "evidence": "/wp-content/"}, "other_platforms": [], "add_ons": [], "response_time_ms": 310}, "credits_used": 1, "credits_remaining": 99},
+            )
+        )
+        res = client.site_platform("example.com")
+        assert "domain=example.com" in str(route.calls[0].request.url)
+        assert res["data"]["platform"]["name"] == "WordPress"
+        assert res["credits_used"] == 1
+
+    @respx.mock
     def test_domain_overlap_comma_joined(self, client):
         route = respx.get(f"{BASE_URL}/domain-overlap").mock(
             return_value=httpx.Response(
